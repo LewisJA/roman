@@ -94,6 +94,11 @@ class Roman1ToTest(unittest.TestCase):
                           roman.RomanNumeralConverter.to_roman,
                           "banana")
 
+    def test_020_crazy_number(self):
+        self.__assertTranslatesToRoman(92, "XCII")
+        self.__assertTranslatesToRoman(643, "DCXLIII")
+        self.__assertTranslatesToRoman(2014, "MMXIV")
+
     def __assertTranslatesToRoman(self, integer, roman_numeral):
         result = roman.RomanNumeralConverter.to_roman(integer)
         self.assertEqual(roman_numeral, result)
@@ -160,6 +165,11 @@ class Roman2FromTest(unittest.TestCase):
     def test_031_1000(self):
         """ from_roman should convert "M" to 1000 """
         self.__assertTranslatesFromRoman("M", 1000)
+
+    def test_032_crazy_number(self):
+        self.__assertTranslatesFromRoman("XCII", 92)
+        self.__assertTranslatesFromRoman("DCXLIII", 643)
+        self.__assertTranslatesFromRoman("MMXIV", 2014)
 
     def test_032_too_many_repeated_numerals(self):
         """ from_roman should fail with too many repeated numerals """
